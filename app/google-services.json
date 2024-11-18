@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "551077379482",
+    "firebase_url": "https://carmarket-db100-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "carmarket-db100",
+    "storage_bucket": "carmarket-db100.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551077379482:android:622cbc9f6304da4c3f0e23",
+        "android_client_info": {
+          "package_name": "com.proyecto.carmarket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo3Z_oekgCevu-DIHaBUGlPoTwc7Mk6Sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

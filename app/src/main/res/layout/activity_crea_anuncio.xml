@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.CreaAnuncio">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="550dp"
+                        android:background="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/creaAnuncio_volver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="48dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/back1" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Crear Anuncio"
+                            android:textColor="@color/white"
+                            android:textSize="21sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/creaAnuncio_volver"
+                            app:layout_constraintEnd_toStartOf="@+id/creaAnuncio_anadir"
+                            app:layout_constraintStart_toEndOf="@+id/creaAnuncio_volver"
+                            app:layout_constraintTop_toTopOf="@+id/creaAnuncio_volver" />
+
+                        <ImageView
+                            android:id="@+id/creaAnuncio_anadir"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/creaAnuncio_volver"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/creaAnuncio_volver"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:srcCompat="@drawable/mas" />
+
+                        <ImageView
+                            android:id="@+id/creaAnuncio_eliminar"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="66dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/basura" />
+
+                        <ImageView
+                            android:id="@+id/creaAnuncio_foto"
+                            android:layout_width="323dp"
+                            android:layout_height="334dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="32dp"
+                            android:layout_marginBottom="32dp"
+                            app:layout_constraintBottom_toTopOf="@+id/creaAnuncio_eliminar"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/creaAnuncio_volver"
+                            tools:srcCompat="@drawable/coche" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="500dp"
+                        android:background="@drawable/white_bg_top_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_margin="16dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/creaAnuncio_marca"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Marca"
+                                    android:textColor="@color/black"
+                                    android:textSize="24dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/creaAnuncio_modelo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:text="Modelo"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.333"
+                                    android:background="@color/grey"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/creaAnuncio_imagenFecha"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="16sp"
+                                        app:srcCompat="@drawable/calendario" />
+
+                                    <TextView
+                                        android:id="@+id/textView1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:text="Fecha de\nMatriculacion"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/creaAnuncio_textoFecha"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:layout_marginBottom="16sp"
+                                        android:layout_marginEnd="16sp"
+                                        android:text="-" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="16sp"
+                                    android:layout_marginEnd="16sp"
+                                    android:layout_weight="0.333"
+                                    android:background="@color/grey"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/creaAnuncio_fotoKm"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="16sp"
+                                        app:srcCompat="@drawable/carretera" />
+
+                                    <TextView
+                                        android:id="@+id/textView15"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:text="Kilometraje\n"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/creaAnuncio_textoKm"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:layout_marginBottom="16sp"
+                                        android:layout_marginEnd="16sp"
+                                        android:text="-" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.333"
+                                    android:background="@color/grey"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/creaAnuncio_fotoLocalidad"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="16sp"
+                                        app:srcCompat="@drawable/ciudad" />
+
+                                    <TextView
+                                        android:id="@+id/textView10"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:text="Localidad\n"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/creaAnuncio_textoLocalidad"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:layout_marginBottom="16sp"
+                                        android:layout_marginEnd="16sp"
+                                        android:text="-" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.333"
+                                    android:background="@color/grey"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/creaAnuncio_fotoPlazas"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="16sp"
+                                        app:srcCompat="@drawable/asiento" />
+
+                                    <TextView
+                                        android:id="@+id/textView20"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:text="Numero de\nPlazas"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/creaAnuncio_textoPlazas"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:layout_marginBottom="16sp"
+                                        android:layout_marginEnd="16sp"
+                                        android:text="-" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="16sp"
+                                    android:layout_marginEnd="16sp"
+                                    android:layout_weight="0.333"
+                                    android:background="@color/grey"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/creaAnuncio_fotoPotencia"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="16sp"
+                                        app:srcCompat="@drawable/cuentakilometros" />
+
+                                    <TextView
+                                        android:id="@+id/textView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:text="Potencia\n"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/creaAnuncio_textoPotencia"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:layout_marginBottom="16sp"
+                                        android:layout_marginEnd="16sp"
+                                        android:text="-" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.333"
+                                    android:background="@color/grey"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:id="@+id/creaAnuncio_fotoCombustible"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="16sp"
+                                        app:srcCompat="@drawable/gasolinera" />
+
+                                    <TextView
+                                        android:id="@+id/textView24"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:text="Tipo de\nCombustible"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/creaAnuncio_textoCombustible"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16sp"
+                                        android:layout_marginTop="8sp"
+                                        android:layout_marginBottom="16sp"
+                                        android:layout_marginEnd="16sp"
+                                        android:text="-" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/creaAnuncio_crear"
+                                    style="@android:style/Widget.Button"
+                                    android:layout_width="180dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="16dp"
+
+                                    android:background="@drawable/black_bg"
+                                    android:text="Crear"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/creaAnuncio_clickPrecio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:text="Precio"
+                                    android:textColor="@color/black"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/creaAnuncio_textoPrecio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:text="0€"
+                                    android:textSize="26sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/creaAnuncio_clickPrecio" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+        <ProgressBar
+            android:id="@+id/creaAnuncio_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminateTint="@android:color/black"/>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
