@@ -1,5 +1,6 @@
 package com.proyecto.carmarket.Activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
@@ -26,6 +27,8 @@ class VerAnuncio : AppCompatActivity() {
     private lateinit var tipoCombustibleTextView: TextView
     private lateinit var precioTexto: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var contador: TextView
+    var propietario: String = ""
 
     private val listaFotos = mutableListOf<String>()
     private var fotoIndex = 0
@@ -47,6 +50,7 @@ class VerAnuncio : AppCompatActivity() {
         tipoCombustibleTextView = findViewById(R.id.verAnuncio_textoCombustible)
         precioTexto = findViewById(R.id.verAnuncio_textoPrecio)
         progressBar = findViewById(R.id.verAnuncio_progressBar)
+        contador = findViewById(R.id.verAnuncio_contador)
 
         progressBar.visibility = View.VISIBLE
 
@@ -70,6 +74,22 @@ class VerAnuncio : AppCompatActivity() {
             }
             true
         }
+
+        findViewById<Button>(R.id.verAnuncio_verPerfil).setOnClickListener {
+            val intent = Intent(this, SuPerfil::class.java)
+            intent.putExtra("email", propietario)
+            intent.putExtra("ventanaAnterior", "anuncio")
+            startActivity(intent)
+            finish()
+        }
+
+        findViewById<Button>(R.id.verAnuncio_comparar).setOnClickListener {
+            val intent = Intent(this, OtroAnuncio::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
     }
 
     private fun cargarDatosAnuncio(anuncioId: String) {
@@ -87,8 +107,8 @@ class VerAnuncio : AppCompatActivity() {
                     potenciaTextView.text = "${document.getString("potencia") ?: "-"} CV"
                     tipoCombustibleTextView.text = document.getString("tipoCombustible") ?: "-"
                     precioTexto.text = "${document.getString("precio") ?: "0"} €"
+                    propietario = document.getString("propietario") ?: ""
 
-                    // Cargar fotos
                     cargarFotos(anuncioId)
                 } else {
                     progressBar.visibility = View.GONE
@@ -99,6 +119,11 @@ class VerAnuncio : AppCompatActivity() {
                 progressBar.visibility = View.GONE
                 showAlert("Error", "No se pudo cargar el anuncio. Inténtalo de nuevo.")
             }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
     }
 
     private fun cargarFotos(anuncioId: String) {
@@ -142,7 +167,12 @@ class VerAnuncio : AppCompatActivity() {
                 .placeholder(R.drawable.coche)
                 .error(R.drawable.coche)
                 .into(imagenActual)
+            actualizarContador()
         }
+    }
+
+    private fun actualizarContador() {
+        contador.text = "${fotoIndex + 1}/${listaFotos.size}"
     }
 
     private fun showAlert(titulo: String, mensaje: String) {

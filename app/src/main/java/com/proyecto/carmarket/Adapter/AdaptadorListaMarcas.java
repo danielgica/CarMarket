@@ -22,10 +22,16 @@ public class AdaptadorListaMarcas extends RecyclerView.Adapter<AdaptadorListaMar
 
     private final List<Marca> items;
     private final FirebaseStorage firebaseStorage;
+    private final OnMarcaClickListener onMarcaClickListener;
 
-    public AdaptadorListaMarcas(List<Marca> items) {
+    public interface OnMarcaClickListener {
+        void onMarcaClick(String nombreMarca);
+    }
+
+    public AdaptadorListaMarcas(List<Marca> items, OnMarcaClickListener listener) {
         this.items = items;
         this.firebaseStorage = FirebaseStorage.getInstance();
+        this.onMarcaClickListener = listener;
     }
 
     @NonNull
@@ -38,28 +44,39 @@ public class AdaptadorListaMarcas extends RecyclerView.Adapter<AdaptadorListaMar
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Marca marca = items.get(position);
-        holder.nombreMarca.setText(marca.getNombre());
+        holder.nombreMarca.setText(capitalizeFirstLetter(marca.getNombre()));
 
-        String nombreArchivo = marca.getUrlIcono();
-
-        if (nombreArchivo == null || nombreArchivo.isEmpty()) {
-            Log.d("AdaptadorListaMarcas", "URL vacía para la marca: " + marca.getNombre());
-            holder.iconoMarca.setImageResource(R.drawable.black_bg);
+        if ("todos".equalsIgnoreCase(marca.getNombre())) {
+            holder.iconoMarca.setImageResource(R.drawable.coche);
         } else {
-            String rutaImagen = "marcas/" + nombreArchivo;
-            StorageReference storageReference = firebaseStorage.getReference().child(rutaImagen);
+            String nombreArchivo = marca.getUrlIcono();
 
-            storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
-                Glide.with(holder.iconoMarca.getContext())
-                        .load(uri.toString())
-                        .placeholder(R.drawable.black_bg)
-                        .error(R.drawable.black_bg)
-                        .into(holder.iconoMarca);
-            }).addOnFailureListener(e -> {
-                Log.e("AdaptadorListaMarcas", "Error al obtener la URL de descarga", e);
+            if (nombreArchivo == null || nombreArchivo.isEmpty()) {
+                Log.d("AdaptadorListaMarcas", "URL vacía para la marca: " + marca.getNombre());
                 holder.iconoMarca.setImageResource(R.drawable.black_bg);
-            });
+            } else {
+                String rutaImagen = "marcas/" + nombreArchivo;
+                StorageReference storageReference = firebaseStorage.getReference().child(rutaImagen);
+
+                storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                    Glide.with(holder.iconoMarca.getContext())
+                            .load(uri.toString())
+                            .placeholder(R.drawable.coche)
+                            .error(R.drawable.coche)
+                            .into(holder.iconoMarca);
+                }).addOnFailureListener(e -> {
+                    Log.e("AdaptadorListaMarcas", "Error al obtener la URL de descarga", e);
+                    holder.iconoMarca.setImageResource(R.drawable.black_bg);
+                });
+            }
         }
+
+        holder.itemView.setOnClickListener(v -> onMarcaClickListener.onMarcaClick(marca.getNombre()));
+    }
+
+    private String capitalizeFirstLetter(String text) {
+        if (text == null || text.isEmpty()) return "";
+        return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
     }
 
     @Override
@@ -78,3 +95,4 @@ public class AdaptadorListaMarcas extends RecyclerView.Adapter<AdaptadorListaMar
         }
     }
 }
+

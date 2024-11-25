@@ -22,10 +22,12 @@ public class AdaptadorListaAnuncios extends RecyclerView.Adapter<AdaptadorListaA
 
     private final Context context;
     private final List<Anuncio> listaAnuncios;
+    private final Class<?> destinoActivity;
 
-    public AdaptadorListaAnuncios(Context context, List<Anuncio> listaAnuncios) {
+    public AdaptadorListaAnuncios(Context context, List<Anuncio> listaAnuncios, Class<?> destinoActivity) {
         this.context = context;
         this.listaAnuncios = listaAnuncios;
+        this.destinoActivity = destinoActivity;
     }
 
     @NonNull
@@ -51,19 +53,12 @@ public class AdaptadorListaAnuncios extends RecyclerView.Adapter<AdaptadorListaA
             holder.foto.setImageResource(R.drawable.intro_car);
         }
 
+
         holder.itemView.setOnClickListener(v -> {
-            ProgressBar progressBar = ((Activity) context).findViewById(R.id.menu_progressBar);
-            progressBar.setVisibility(View.VISIBLE);
-
-            String id = anuncio.getId();
-
-            Intent intent = new Intent(context, VerAnuncio.class);
-
-            intent.putExtra("ID_ANUNCIO", id);
-
+            Intent intent = new Intent(context, destinoActivity);
+            intent.putExtra("ID_ANUNCIO", anuncio.getId());
             context.startActivity(intent);
 
-            progressBar.setVisibility(View.GONE);
             ((Activity) context).finish();
         });
     }

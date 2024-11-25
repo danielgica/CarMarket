@@ -1,5 +1,6 @@
 package com.proyecto.carmarket.Activity
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
@@ -86,6 +87,12 @@ class MiPerfil : AppCompatActivity() {
         cargarDatosUsuario()
     }
 
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
+
+    }
+
     private fun cargarDatosUsuario() {
         val email = MainActivity.email ?: return
         val db = FirebaseFirestore.getInstance()
@@ -119,7 +126,7 @@ class MiPerfil : AppCompatActivity() {
                 imagenSeleccionada = true
             }
             .addOnFailureListener {
-                miPerfilFoto.setImageResource(R.drawable.perfil) // Imagen por defecto en caso de error
+                miPerfilFoto.setImageResource(R.drawable.perfil)
             }
     }
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".Activity.MenuActivity">
+    tools:context=".Activity.TusAnuncios">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,24 +28,25 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/menu_foto"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
+                        android:id="@+id/tusAnuncios_atras"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/perfil" />
+                        app:srcCompat="@drawable/back2" />
 
 
                     <TextView
-                        android:id="@+id/menu_nombrePersona"
+                        android:id="@+id/tusAnuncios_cabecera"
+                        android:textSize="22sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Bienvenido "
+                        android:text="Tus anuncios"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/menu_foto"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -57,7 +58,7 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/menu_textoLocalidad"
+                        android:id="@+id/tusAnuncios_textoLocalidad"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
@@ -81,7 +82,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/menu_recyclerViewMarcas"
+                        android:id="@+id/tusAnuncios_recyclerViewMarcas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -95,7 +96,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ProgressBar
-                        android:id="@+id/menu_progressBarMarcas"
+                        android:id="@+id/tusAnuncios_progressBarMarcas"
                         style="?android:attr/progressBarStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,7 +113,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/menu_tituloQueVes"
+                        android:id="@+id/tusAnuncios_tituloQueVes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -124,26 +125,26 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/menu_recyclerViewAnuncios"
+                        android:id="@+id/tusAnuncios_recyclerViewAnuncios"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:paddingBottom="80dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/menu_tituloQueVes" />
+                        app:layout_constraintTop_toBottomOf="@+id/tusAnuncios_tituloQueVes" />
 
                     <ProgressBar
-                        android:id="@+id/menu_progressBarAnuncios"
+                        android:id="@+id/tusAnuncios_progressBarAnuncios"
                         style="?android:attr/progressBarStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="180dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/menu_recyclerViewAnuncios"
-                        app:layout_constraintEnd_toEndOf="@+id/menu_recyclerViewAnuncios"
+                        app:layout_constraintBottom_toBottomOf="@+id/tusAnuncios_recyclerViewAnuncios"
+                        app:layout_constraintEnd_toEndOf="@+id/tusAnuncios_recyclerViewAnuncios"
                         app:layout_constraintHorizontal_bias="0.005"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/menu_recyclerViewAnuncios"
+                        app:layout_constraintTop_toTopOf="@+id/tusAnuncios_recyclerViewAnuncios"
                         app:layout_constraintVertical_bias="0.468" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
@@ -157,56 +158,4 @@
             android:visibility="gone"
             android:indeterminateTint="@android:color/black"/>
     </FrameLayout>
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:background="@drawable/black_bg">
-
-                <ImageView
-                    android:id="@+id/menu_miPerfil"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/btn_4"
-                    android:layout_gravity="center"/>
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:src="@drawable/mensaje" />
-
-                <ImageView
-                    android:id="@+id/menu_creaAnuncio"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/euro"
-                    android:layout_gravity="center"/>
-
-                <ImageView
-                    android:id="@+id/menu_tusAnuncios"
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/coche"
-                    android:layout_gravity="center"/>
-
-            </LinearLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

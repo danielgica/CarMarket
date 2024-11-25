@@ -13,23 +13,44 @@
         android:theme="@style/Theme.CarMarket"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.VerAnuncio"
+            android:name=".Activity.VerDosAnuncio"
             android:exported="false" />
+        <activity
+            android:name=".Activity.TuAnuncio"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TusAnuncios"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.OtroAnuncio"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SuPerfil"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.VerAnuncio"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CreaAnuncio"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MiPerfil"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MenuActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.CreaCuentaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true">

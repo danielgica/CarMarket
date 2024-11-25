@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.VerDosAnuncio">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="550dp"
+                        android:background="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/verDosAnuncio_foto2"
+                            android:layout_width="162dp"
+                            android:layout_height="167dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/verDosAnuncio_volver"
+                            app:srcCompat="@drawable/coche" />
+
+                        <TextView
+                            android:id="@+id/verDosAnuncio_contador1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:text="0 / 0"
+                            android:textColor="@color/white"
+                            android:textSize="21sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@+id/verDosAnuncio_foto1"
+                            app:layout_constraintStart_toStartOf="@+id/verDosAnuncio_foto1"
+                            app:layout_constraintTop_toBottomOf="@+id/verDosAnuncio_foto1" />
+
+                        <TextView
+                            android:id="@+id/verDosAnuncio_contador2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:text="0 / 0"
+                            android:textColor="@color/white"
+                            android:textSize="21sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="@+id/verDosAnuncio_foto2"
+                            app:layout_constraintStart_toStartOf="@+id/verDosAnuncio_foto2"
+                            app:layout_constraintTop_toBottomOf="@+id/verDosAnuncio_foto2" />
+
+                        <ImageView
+                            android:id="@+id/verDosAnuncio_volver"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="48dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/back1" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="46dp"
+                            android:text="Comparación"
+                            android:textColor="@color/white"
+                            android:textSize="21sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/verDosAnuncio_volver"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/verDosAnuncio_volver"
+                            app:layout_constraintTop_toTopOf="@+id/verDosAnuncio_volver" />
+
+                        <ImageView
+                            android:id="@+id/verDosAnuncio_foto1"
+                            android:layout_width="162dp"
+                            android:layout_height="167dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="32dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/verDosAnuncio_volver"
+                            tools:srcCompat="@drawable/coche" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="380dp"
+                        android:background="@drawable/white_bg_top_corner"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_margin="16dp">
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_marca1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Marca 1"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="16dp"/>
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_marca2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Marca 2"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="32dp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_margin="16dp">
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_modelo1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Modelo 1"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:layout_marginLeft="16dp"/>
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_modelo2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Modelo 2"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:layout_marginLeft="32dp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+
+                                    <LinearLayout
+                                        android:layout_width="150dp"
+                                        android:layout_height="500dp"
+                                        android:layout_margin="16dp"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_imagenFecha1"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/calendario" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncios_f1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Fecha de\nMatriculacion"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoFecha1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoKm1"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/carretera" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_Km1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Kilometraje\n"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoKm1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoLocalidad1"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/ciudad" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_l1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Localidad\n"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoLocalidad1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="150dp"
+                                        android:layout_height="500dp"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoPlazas1"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/asiento" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_p1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Numero de\nPlazas"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoPlazas1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoPotencia1"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/cuentakilometros" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_pt1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Potencia\n"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoPotencia1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoCombustible1"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/gasolinera" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_c1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Tipo de\nCombustible"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoCombustible1"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:layout_weight="1">
+
+                                    <LinearLayout
+                                        android:layout_width="150dp"
+                                        android:layout_height="500dp"
+                                        android:layout_margin="16dp"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_imagenFecha2"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/calendario" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncios_f2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Fecha de\nMatriculacion"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoFecha2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoKm2"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/carretera" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_Km2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Kilometraje\n"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoKm2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoLocalidad2"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/ciudad" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_l2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Localidad\n"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoLocalidad2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="150dp"
+                                        android:layout_height="500dp"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoPlazas2"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/asiento" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_p2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Numero de\nPlazas"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoPlazas2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoPotencia2"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/cuentakilometros" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_pt2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Potencia\n"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoPotencia2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16sp"
+                                            android:layout_marginBottom="16sp"
+                                            android:layout_weight="0.333"
+                                            android:background="@color/grey"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:id="@+id/verDosAnuncio_fotoCombustible2"
+                                                android:layout_width="30dp"
+                                                android:layout_height="30dp"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="16sp"
+                                                app:srcCompat="@drawable/gasolinera" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_c2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:text="Tipo de\nCombustible"
+                                                android:textColor="@color/black"
+                                                android:textSize="16sp"
+                                                android:textStyle="bold" />
+
+                                            <TextView
+                                                android:id="@+id/verDosAnuncio_textoCombustible2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="32sp"
+                                                android:layout_marginTop="8sp"
+                                                android:layout_marginEnd="16sp"
+                                                android:layout_marginBottom="16sp"
+                                                android:text="-" />
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp">
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_clickPrecio2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="16dp"
+                                    android:text="Precio"
+                                    android:textColor="@color/black"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_textoPrecio1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:text="0€"
+                                    android:textSize="26sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/verDosAnuncio_clickPrecio1" />
+
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_clickPrecio1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:text="Precio"
+                                    android:textColor="@color/black"
+                                    android:textSize="26sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/verDosAnuncio_textoPrecio2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="16dp"
+                                    android:text="0€"
+                                    android:textSize="26sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/verDosAnuncio_clickPrecio2" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/verDosAnuncio_selecciona1"
+                                    style="@android:style/Widget.Button"
+                                    android:layout_width="160dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/black_bg"
+                                    android:text="Anuncio 1"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/verDosAnuncio_textoPrecio1" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/verDosAnuncio_selecciona2"
+                                    style="@android:style/Widget.Button"
+                                    android:layout_width="160dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/black_bg"
+                                    android:text="Anuncio 2"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/verDosAnuncio_textoPrecio2" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+        <ProgressBar
+            android:id="@+id/verDosAnuncio_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminateTint="@android:color/black"/>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

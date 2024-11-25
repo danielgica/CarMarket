@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.VerAnuncio">
+    tools:context=".Activity.TuAnuncio">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -34,20 +34,19 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/verAnuncio_contador"
+                            android:id="@+id/tuAnuncio_contador"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="66dp"
                             android:text="0 / 0"
                             android:textColor="@color/white"
                             android:textSize="21sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tuAnuncio_eliminar" />
 
                         <ImageView
-                            android:id="@+id/verAnuncio_volver"
+                            android:id="@+id/tuAnuncio_volver"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -60,25 +59,48 @@
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="46dp"
-                            android:text="Ver anuncio"
+                            android:text="Actualizar anuncio"
                             android:textColor="@color/white"
                             android:textSize="21sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@+id/verAnuncio_volver"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/verAnuncio_volver"
-                            app:layout_constraintTop_toTopOf="@+id/verAnuncio_volver" />
+                            app:layout_constraintBottom_toBottomOf="@+id/tuAnuncio_volver"
+                            app:layout_constraintEnd_toStartOf="@+id/tuAnuncio_anadir"
+                            app:layout_constraintStart_toEndOf="@+id/tuAnuncio_volver"
+                            app:layout_constraintTop_toTopOf="@+id/tuAnuncio_volver" />
 
                         <ImageView
-                            android:id="@+id/verAnuncio_foto"
+                            android:id="@+id/tuAnuncio_anadir"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tuAnuncio_volver"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tuAnuncio_volver"
+                            app:layout_constraintVertical_bias="0.0"
+                            app:srcCompat="@drawable/mas" />
+
+                        <ImageView
+                            android:id="@+id/tuAnuncio_eliminar"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="66dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/basura" />
+
+                        <ImageView
+                            android:id="@+id/tuAnuncio_foto"
                             android:layout_width="323dp"
                             android:layout_height="334dp"
                             android:layout_marginStart="32dp"
+                            android:layout_marginTop="32dp"
                             android:layout_marginEnd="32dp"
+                            android:layout_marginBottom="32dp"
+                            app:layout_constraintBottom_toTopOf="@+id/tuAnuncio_eliminar"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/verAnuncio_volver"
+                            app:layout_constraintTop_toBottomOf="@+id/tuAnuncio_volver"
                             tools:srcCompat="@drawable/coche" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -105,7 +127,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/verAnuncio_marca"
+                                    android:id="@+id/tuAnuncio_marca"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -116,7 +138,7 @@
                             </LinearLayout>
 
                             <TextView
-                                android:id="@+id/verAnuncio_modelo"
+                                android:id="@+id/tuAnuncio_modelo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
@@ -132,6 +154,8 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
+                                    android:id="@+id/tuAnuncio_linearFecha"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"
@@ -139,7 +163,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:id="@+id/creaAnuncio_imagenFecha"
+                                        android:id="@+id/tuAnuncio_imagenFecha"
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
                                         android:layout_gravity="center"
@@ -158,17 +182,19 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/verAnuncio_textoFecha"
+                                        android:id="@+id/tuAnuncio_textoFecha"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16sp"
                                         android:layout_marginTop="8sp"
-                                        android:layout_marginBottom="16sp"
                                         android:layout_marginEnd="16sp"
+                                        android:layout_marginBottom="16sp"
                                         android:text="-" />
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/tuAnuncio_linearkm"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="16sp"
@@ -178,7 +204,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:id="@+id/creaAnuncio_fotoKm"
+                                        android:id="@+id/tuAnuncio_fotoKm"
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
                                         android:layout_gravity="center"
@@ -197,7 +223,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/verAnuncio_textoKm"
+                                        android:id="@+id/tuAnuncio_textoKm"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16sp"
@@ -208,6 +234,8 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/tuAnuncio_linearLocalidad"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"
@@ -215,7 +243,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:id="@+id/creaAnuncio_fotoLocalidad"
+                                        android:id="@+id/tuAnuncio_fotoLocalidad"
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
                                         android:layout_gravity="center"
@@ -234,7 +262,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/verAnuncio_textoLocalidad"
+                                        android:id="@+id/tuAnuncio_textoLocalidad"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16sp"
@@ -252,6 +280,8 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
+                                    android:id="@+id/tuAnuncio_linearPlazas"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"
@@ -259,7 +289,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:id="@+id/creaAnuncio_fotoPlazas"
+                                        android:id="@+id/tuAnuncio_fotoPlazas"
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
                                         android:layout_gravity="center"
@@ -278,7 +308,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/verAnuncio_textoPlazas"
+                                        android:id="@+id/tuAnuncio_textoPlazas"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16sp"
@@ -289,6 +319,8 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/tuAnuncio_linearPotencia"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="16sp"
@@ -298,7 +330,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:id="@+id/creaAnuncio_fotoPotencia"
+                                        android:id="@+id/tuAnuncio_fotoPotencia"
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
                                         android:layout_gravity="center"
@@ -317,7 +349,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/verAnuncio_textoPotencia"
+                                        android:id="@+id/tuAnuncio_textoPotencia"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16sp"
@@ -328,6 +360,8 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/tuAnuncio_linearCombustible"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"
@@ -335,7 +369,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:id="@+id/creaAnuncio_fotoCombustible"
+                                        android:id="@+id/tuAnuncio_fotoCombustible"
                                         android:layout_width="30dp"
                                         android:layout_height="30dp"
                                         android:layout_gravity="center"
@@ -354,7 +388,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/verAnuncio_textoCombustible"
+                                        android:id="@+id/tuAnuncio_textoCombustible"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16sp"
@@ -370,8 +404,38 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="16dp">
 
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/tuAnuncio_eliminarAnuncio"
+                                    style="@android:style/Widget.Button"
+                                    android:layout_width="160dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="16dp"
+
+                                    android:background="@drawable/black_bg"
+                                    android:text="Eliminar"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/tuAnuncio_actualizar" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/tuAnuncio_actualizar"
+                                    style="@android:style/Widget.Button"
+                                    android:layout_width="160dp"
+                                    android:layout_height="wrap_content"
+
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:background="@drawable/black_bg"
+                                    android:text="Actualizar"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/tuAnuncio_clickPrecio" />
+
                                 <TextView
-                                    android:id="@+id/creaAnuncio_clickPrecio"
+                                    android:id="@+id/tuAnuncio_clickPrecio"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
@@ -382,58 +446,17 @@
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/verAnuncio_verPerfil"
-                                    style="@android:style/Widget.Button"
-                                    android:layout_width="180dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="16dp"
-                                    android:background="@drawable/black_bg"
-                                    android:text="Ver perfil"
-                                    android:textColor="@color/white"
-                                    android:textSize="20sp"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
                                 <TextView
-                                    android:id="@+id/verAnuncio_textoPrecio"
+                                    android:id="@+id/tuAnuncio_textoPrecio"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
+                                    android:layout_marginStart="24dp"
                                     android:text="0€"
                                     android:textSize="26sp"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/creaAnuncio_clickPrecio" />
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/verAnuncio_enviaMensaje"
-                                    style="@android:style/Widget.Button"
-                                    android:layout_width="180dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:background="@drawable/black_bg"
-                                    android:text="Enviar mensaje"
-                                    android:textColor="@color/white"
-                                    android:textSize="20sp"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/verAnuncio_textoPrecio" />
-
-                                <androidx.appcompat.widget.AppCompatButton
-                                    android:id="@+id/verAnuncio_comparar"
-                                    style="@android:style/Widget.Button"
-                                    android:layout_width="180dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:background="@drawable/black_bg"
-                                    android:text="Comparar"
-                                    android:textColor="@color/white"
-                                    android:textSize="20sp"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/verAnuncio_textoPrecio" />
-
+                                    app:layout_constraintStart_toEndOf="@+id/tuAnuncio_clickPrecio"
+                                    app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
+
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -441,7 +464,7 @@
             </LinearLayout>
         </ScrollView>
         <ProgressBar
-            android:id="@+id/verAnuncio_progressBar"
+            android:id="@+id/tuAnuncio_progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

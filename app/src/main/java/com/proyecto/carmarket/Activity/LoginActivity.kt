@@ -1,5 +1,6 @@
 package com.proyecto.carmarket.Activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -98,5 +99,10 @@ class LoginActivity : AppCompatActivity() {
                     showAlert("Error", "Error al verificar los datos: ${e.message}")
                 }
         }
+    }
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
+
     }
 }

@@ -30,7 +30,7 @@ import com.proyecto.carmarket.Objetos.Anuncio
 import com.proyecto.carmarket.Objetos.Marca
 import com.proyecto.carmarket.R
 
-class MenuActivity : AppCompatActivity() {
+class OtroAnuncio : AppCompatActivity() {
     private var db = FirebaseFirestore.getInstance()
     private var marcaSeleccionada: String = "Todos"
     private var localidadSeleccionada: String = ""
@@ -38,7 +38,7 @@ class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_menu)
+        setContentView(R.layout.activity_otro_anuncio)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -46,11 +46,10 @@ class MenuActivity : AppCompatActivity() {
             insets
         }
 
-        cargaNombreYFotoUsuario()
         cargaListaMarcas()
         cargaAnunciosPorMarcaYLocalidad(marcaSeleccionada, localidadSeleccionada)
 
-        val localidadEditText = findViewById<EditText>(R.id.menu_textoLocalidad)
+        val localidadEditText = findViewById<EditText>(R.id.otroAnuncio_textoLocalidad)
         localidadEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -61,35 +60,6 @@ class MenuActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        val miPerfilButton = findViewById<ImageView>(R.id.menu_miPerfil)
-
-        miPerfilButton.setOnClickListener {
-            val progressBar = findViewById<ProgressBar>(R.id.menu_progressBar)
-            progressBar.visibility = View.VISIBLE
-            startActivity(Intent(this, MiPerfil::class.java))
-            finish()
-            progressBar.visibility = View.GONE
-        }
-
-        val creaAnuncioButton = findViewById<ImageView>(R.id.menu_creaAnuncio)
-
-        creaAnuncioButton.setOnClickListener {
-            val progressBar = findViewById<ProgressBar>(R.id.menu_progressBar)
-            progressBar.visibility = View.VISIBLE
-            startActivity(Intent(this, CreaAnuncio::class.java))
-            finish()
-            progressBar.visibility = View.GONE
-        }
-
-        val tusAnunciosButton = findViewById<ImageView>(R.id.menu_tusAnuncios)
-
-        tusAnunciosButton.setOnClickListener {
-            val progressBar = findViewById<ProgressBar>(R.id.menu_progressBar)
-            progressBar.visibility = View.VISIBLE
-            startActivity(Intent(this, TusAnuncios::class.java))
-            finish()
-            progressBar.visibility = View.GONE
-        }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -98,51 +68,14 @@ class MenuActivity : AppCompatActivity() {
 
     }
 
-
-    private fun cargaNombreYFotoUsuario() {
-        val email = MainActivity.email
-        val nombreTextView = findViewById<TextView>(R.id.menu_nombrePersona)
-        val fotoImageView = findViewById<ImageView>(R.id.menu_foto)
-
-
-        db.collection("personas").document(email).get().addOnSuccessListener { document ->
-            if (document != null && document.exists()) {
-                val nombre = document.getString("nombre")
-
-                if (!nombre.isNullOrEmpty() && nombre != "Nombre") {
-                    nombreTextView.text = "Bienvenido $nombre"
-                } else {
-                    nombreTextView.text = "Bienvenido"
-                }
-            } else {
-                nombreTextView.text = "Bienvenido"
-            }
-        }.addOnFailureListener { e ->
-            Log.e("MenuActivity", "Error al obtener datos del usuario: $email", e)
-            nombreTextView.text = "Bienvenido"
-        }
-
-
-        val storageRef = FirebaseStorage.getInstance().reference.child("personas/$email.jpg")
-        storageRef.downloadUrl.addOnSuccessListener { uri ->
-            Glide.with(this)
-                .load(uri)
-                .placeholder(R.drawable.perfil)
-                .error(R.drawable.perfil)
-                .into(fotoImageView)
-        }.addOnFailureListener { e ->
-            Log.e("MenuActivity", "Error al cargar la foto del usuario: $email.jpg", e)
-        }
-    }
-
-
     private fun cargaListaMarcas() {
-        val progressBar = findViewById<View>(R.id.menu_progressBarMarcas)
+        val progressBar = findViewById<View>(R.id.otroAnuncio_progressBarMarcas)
         progressBar.visibility = View.VISIBLE
 
         db.collection("marcas").get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val listaMarcas = ArrayList<Marca>()
+
                 listaMarcas.add(Marca("Todos", "coche"))
 
                 for (document in task.result) {
@@ -156,20 +89,20 @@ class MenuActivity : AppCompatActivity() {
                     cargaAnunciosPorMarcaYLocalidad(marcaSeleccionada, localidadSeleccionada)
                 }
 
-                findViewById<RecyclerView>(R.id.menu_recyclerViewMarcas).apply {
-                    layoutManager = LinearLayoutManager(this@MenuActivity, LinearLayoutManager.HORIZONTAL, false)
+                findViewById<RecyclerView>(R.id.otroAnuncio_recyclerViewMarcas).apply {
+                    layoutManager = LinearLayoutManager(this@OtroAnuncio, LinearLayoutManager.HORIZONTAL, false)
                     adapter = adaptador
                 }
                 progressBar.visibility = View.GONE
             } else {
-                Log.d("MenuActivity", "Error obteniendo documentos: ", task.exception)
+                Log.d("OtroAnuncio", "Error obteniendo documentos: ", task.exception)
                 progressBar.visibility = View.GONE
             }
         }
     }
 
     private fun cargaAnunciosPorMarcaYLocalidad(marca: String, localidad: String) {
-        val progressBar = findViewById<View>(R.id.menu_progressBarAnuncios)
+        val progressBar = findViewById<View>(R.id.otroAnuncio_progressBarAnuncios)
         progressBar.visibility = View.VISIBLE
 
         val marcaFormateada = if (marca != "Todos") marca.replaceFirstChar { it.uppercaseChar() } else null
@@ -237,7 +170,7 @@ class MenuActivity : AppCompatActivity() {
                             }
                         }
                     }.addOnFailureListener {
-                        Log.e("MenuActivity", "Error al listar fotos en la carpeta: $carpetaFotos", it)
+                        Log.e("OtroAnuncio", "Error al listar fotos en la carpeta: $carpetaFotos", it)
 
                         val anuncio = Anuncio(
                             id, annoMatriculacion, kilometraje, localidadDoc,
@@ -258,21 +191,21 @@ class MenuActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                 }
             } else {
-                Log.d("MenuActivity", "Error obteniendo documentos: ", task.exception)
+                Log.d("OtroAnuncio", "Error obteniendo documentos: ", task.exception)
                 progressBar.visibility = View.GONE
             }
         }
 
-        val tituloTextView = findViewById<TextView>(R.id.menu_tituloQueVes)
+        val tituloTextView = findViewById<TextView>(R.id.otroAnuncio_tituloQueVes)
         tituloTextView.text = marcaFormateada?.let { it } ?: "Todas las marcas"
     }
 
 
 
     private fun configurarRecyclerView(listaAnuncios: List<Anuncio>) {
-        val adaptador = AdaptadorListaAnuncios(this, listaAnuncios, VerAnuncio::class.java)
-        findViewById<RecyclerView>(R.id.menu_recyclerViewAnuncios).apply {
-            layoutManager = GridLayoutManager(this@MenuActivity, 2)
+        val adaptador = AdaptadorListaAnuncios(this, listaAnuncios, VerDosAnuncio::class.java)
+        findViewById<RecyclerView>(R.id.otroAnuncio_recyclerViewAnuncios).apply {
+            layoutManager = GridLayoutManager(this@OtroAnuncio, 2)
             adapter = adaptador
         }
     }

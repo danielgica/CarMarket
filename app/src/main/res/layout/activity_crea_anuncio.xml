@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.CreaAnuncio">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -33,6 +33,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
+                        <TextView
+                            android:id="@+id/creaAnuncio_contador"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 / 0"
+                            android:textColor="@color/white"
+                            android:textSize="21sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/creaAnuncio_eliminar" />
+
                         <ImageView
                             android:id="@+id/creaAnuncio_volver"
                             android:layout_width="wrap_content"
@@ -47,7 +59,7 @@
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Crear Anuncio"
+                            android:text="Crear anuncio"
                             android:textColor="@color/white"
                             android:textSize="21sp"
                             android:textStyle="bold"
@@ -142,6 +154,8 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
+                                    android:id="@+id/creaAnuncio_linearFecha"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"
@@ -173,12 +187,14 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="16sp"
                                         android:layout_marginTop="8sp"
-                                        android:layout_marginBottom="16sp"
                                         android:layout_marginEnd="16sp"
+                                        android:layout_marginBottom="16sp"
                                         android:text="-" />
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/creaAnuncio_linearkm"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="16sp"
@@ -218,6 +234,8 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/creaAnuncio_linearLocalidad"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"
@@ -262,6 +280,8 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
+                                    android:id="@+id/creaAnuncio_linearPlazas"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"
@@ -299,6 +319,8 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/creaAnuncio_linearPotencia"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="16sp"
@@ -338,6 +360,8 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/creaAnuncio_linearCombustible"
+                                    android:clickable="true"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="0.333"

@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -19,12 +20,13 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.widget.addTextChangedListener
+import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class CreaAnuncio : AppCompatActivity() {
+class TuAnuncio : AppCompatActivity() {
 
     private lateinit var volverMenu: ImageView
     private lateinit var agregarImagen: ImageView
@@ -46,7 +48,8 @@ class CreaAnuncio : AppCompatActivity() {
     private lateinit var tipoCombustibleTextView: TextView
     private lateinit var precio: TextView
     private lateinit var precioTexto: TextView
-    private lateinit var publicar: Button
+    private lateinit var actualizar: Button
+    private lateinit var eliminarAnuncio: Button
     private lateinit var gestureDetector: GestureDetectorCompat
     private val listaFotos = mutableListOf<Uri>()
     private var fotoIndex = 0
@@ -65,44 +68,47 @@ class CreaAnuncio : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_crea_anuncio)
+        setContentView(R.layout.activity_tu_anuncio)
+        MainActivity.idAnuncio1 = intent.getStringExtra("ID_ANUNCIO").toString()
 
-        contadorFotos = findViewById(R.id.creaAnuncio_contador)
-        volverMenu = findViewById(R.id.creaAnuncio_volver)
-        agregarImagen = findViewById(R.id.creaAnuncio_anadir)
-        imagenActual = findViewById(R.id.creaAnuncio_foto)
-        borrarImagen = findViewById(R.id.creaAnuncio_eliminar)
-        marcas = findViewById(R.id.creaAnuncio_marca)
-        modelo = findViewById(R.id.creaAnuncio_modelo)
-        fecha = findViewById(R.id.creaAnuncio_imagenFecha)
-        fechaTextView = findViewById(R.id.creaAnuncio_textoFecha)
-        kilometraje = findViewById(R.id.creaAnuncio_fotoKm)
-        kilometrajeTextView = findViewById(R.id.creaAnuncio_textoKm)
-        localidad = findViewById(R.id.creaAnuncio_fotoLocalidad)
-        localidadTextView = findViewById(R.id.creaAnuncio_textoLocalidad)
-        numeroPlazas = findViewById(R.id.creaAnuncio_fotoPlazas)
-        numeroPlazasTextView = findViewById(R.id.creaAnuncio_textoPlazas)
-        potencia = findViewById(R.id.creaAnuncio_fotoPotencia)
-        potenciaTextView = findViewById(R.id.creaAnuncio_textoPotencia)
-        tipoCombustible = findViewById(R.id.creaAnuncio_fotoCombustible)
-        tipoCombustibleTextView = findViewById(R.id.creaAnuncio_textoCombustible)
-        precio = findViewById(R.id.creaAnuncio_clickPrecio)
-        publicar = findViewById(R.id.creaAnuncio_crear)
-        precioTexto = findViewById(R.id.creaAnuncio_textoPrecio)
-        progressBar = findViewById(R.id.creaAnuncio_progressBar)
+        contadorFotos = findViewById(R.id.tuAnuncio_contador)
+        volverMenu = findViewById(R.id.tuAnuncio_volver)
+        agregarImagen = findViewById(R.id.tuAnuncio_anadir)
+        imagenActual = findViewById(R.id.tuAnuncio_foto)
+        borrarImagen = findViewById(R.id.tuAnuncio_eliminar)
+        marcas = findViewById(R.id.tuAnuncio_marca)
+        modelo = findViewById(R.id.tuAnuncio_modelo)
+        fecha = findViewById(R.id.tuAnuncio_imagenFecha)
+        fechaTextView = findViewById(R.id.tuAnuncio_textoFecha)
+        kilometraje = findViewById(R.id.tuAnuncio_fotoKm)
+        kilometrajeTextView = findViewById(R.id.tuAnuncio_textoKm)
+        localidad = findViewById(R.id.tuAnuncio_fotoLocalidad)
+        localidadTextView = findViewById(R.id.tuAnuncio_textoLocalidad)
+        numeroPlazas = findViewById(R.id.tuAnuncio_fotoPlazas)
+        numeroPlazasTextView = findViewById(R.id.tuAnuncio_textoPlazas)
+        potencia = findViewById(R.id.tuAnuncio_fotoPotencia)
+        potenciaTextView = findViewById(R.id.tuAnuncio_textoPotencia)
+        tipoCombustible = findViewById(R.id.tuAnuncio_fotoCombustible)
+        tipoCombustibleTextView = findViewById(R.id.tuAnuncio_textoCombustible)
+        precio = findViewById(R.id.tuAnuncio_clickPrecio)
+        actualizar = findViewById(R.id.tuAnuncio_actualizar)
+        eliminarAnuncio = findViewById(R.id.tuAnuncio_eliminarAnuncio)
+        precioTexto = findViewById(R.id.tuAnuncio_textoPrecio)
+        progressBar = findViewById(R.id.tuAnuncio_progressBar)
 
-        val linearFecha = findViewById<LinearLayout>(R.id.creaAnuncio_linearFecha)
-        val linearKm = findViewById<LinearLayout>(R.id.creaAnuncio_linearkm)
-        val linearLocalidad = findViewById<LinearLayout>(R.id.creaAnuncio_linearLocalidad)
-        val linearPlazas = findViewById<LinearLayout>(R.id.creaAnuncio_linearPlazas)
-        val linearPotencia = findViewById<LinearLayout>(R.id.creaAnuncio_linearPotencia)
-        val linearCombustible = findViewById<LinearLayout>(R.id.creaAnuncio_linearCombustible)
+        val linearFecha = findViewById<LinearLayout>(R.id.tuAnuncio_linearFecha)
+        val linearKm = findViewById<LinearLayout>(R.id.tuAnuncio_linearkm)
+        val linearLocalidad = findViewById<LinearLayout>(R.id.tuAnuncio_linearLocalidad)
+        val linearPlazas = findViewById<LinearLayout>(R.id.tuAnuncio_linearPlazas)
+        val linearPotencia = findViewById<LinearLayout>(R.id.tuAnuncio_linearPotencia)
+        val linearCombustible = findViewById<LinearLayout>(R.id.tuAnuncio_linearCombustible)
 
-        imagenActual.setImageResource(R.drawable.coche)
+        progressBar.visibility = View.VISIBLE
+        cargarDatosAnuncio(MainActivity.idAnuncio1)
 
         volverMenu.setOnClickListener {
             progressBar.visibility = View.VISIBLE
-            startActivity(Intent(this, MenuActivity::class.java))
+            startActivity(Intent(this, TusAnuncios::class.java))
             finish()
             progressBar.visibility = View.GONE
         }
@@ -190,7 +196,7 @@ class CreaAnuncio : AppCompatActivity() {
             }
         }
 
-        publicar.setOnClickListener {
+        actualizar.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             if (validarDatos()) {
                 val datosAnuncio = mapOf(
@@ -203,26 +209,65 @@ class CreaAnuncio : AppCompatActivity() {
                     "potencia" to potenciaTextView.text.toString().removeSuffix(" CV"),
                     "precio" to precioTexto.text.toString().removeSuffix(" €"),
                     "tipoCombustible" to tipoCombustibleTextView.text.toString(),
-                    "propietario" to MainActivity.email // Usar el email del usuario
+                    "propietario" to MainActivity.email
                 )
 
                 val vehiculoCollection = FirebaseFirestore.getInstance().collection("vehiculo")
+                val vehiculoDoc = vehiculoCollection.document(MainActivity.idAnuncio1)
 
-                val vehiculoDoc = vehiculoCollection.document()
-
-                vehiculoDoc.set(datosAnuncio)
+                vehiculoDoc.update(datosAnuncio)
                     .addOnSuccessListener {
-                        val storageRef = FirebaseStorage.getInstance().reference.child("anuncios/${vehiculoDoc.id}")
-                        guardarFotosEnStorage(storageRef, vehiculoDoc.id)
+                        val storageRef = FirebaseStorage.getInstance().reference.child("anuncios/${MainActivity.idAnuncio1}")
+                        guardarFotosEnStorage(storageRef, MainActivity.idAnuncio1)
                     }
                     .addOnFailureListener {
                         progressBar.visibility = View.GONE
-                        showAlert("Error", "No se pudo publicar el anuncio. Inténtalo de nuevo.")
+                        showAlert("Error", "No se pudo actualizar el anuncio. Inténtalo de nuevo.")
                     }
             } else {
                 progressBar.visibility = View.GONE
                 showAlert("Error", "Por favor, completa todos los campos y agrega al menos una foto.")
             }
+        }
+
+        eliminarAnuncio.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+
+            val vehiculoCollection = FirebaseFirestore.getInstance().collection("vehiculo")
+            val storageRef = FirebaseStorage.getInstance().reference.child("anuncios/${MainActivity.idAnuncio1}")
+
+            vehiculoCollection.document(MainActivity.idAnuncio1).delete()
+                .addOnSuccessListener {
+                    storageRef.listAll()
+                        .addOnSuccessListener { listResult ->
+                            val deleteTasks = mutableListOf<Task<Void>>()
+                            listResult.items.forEach { item ->
+                                deleteTasks.add(item.delete())
+                            }
+
+                            Tasks.whenAllComplete(deleteTasks)
+                                .addOnSuccessListener {
+                                    progressBar.visibility = View.GONE
+                                    showAlert("Éxito", "El anuncio se eliminó correctamente.") {
+                                        val intent = Intent(this, TusAnuncios::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                }
+                                .addOnFailureListener {
+                                    progressBar.visibility = View.GONE
+                                    showAlert("Error", "No se pudieron eliminar las fotos del anuncio. Inténtalo de nuevo.")
+                                }
+                        }
+                        .addOnFailureListener {
+                            progressBar.visibility = View.GONE
+                            showAlert("Error", "No se pudo acceder a la carpeta de fotos. Inténtalo de nuevo.")
+                        }
+                }
+                .addOnFailureListener {
+                    progressBar.visibility = View.GONE
+                    showAlert("Error", "No se pudo eliminar el anuncio. Inténtalo de nuevo.")
+                }
         }
 
         actualizarContadorFotos()
@@ -234,7 +279,86 @@ class CreaAnuncio : AppCompatActivity() {
 
     }
 
+    private fun cargarDatosAnuncio(anuncioId: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("vehiculo").document(anuncioId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    marcas.text = document.getString("marca") ?: "Marca"
+                    modelo.text = document.getString("modelo") ?: "Modelo"
+                    fechaTextView.text = document.getString("annoMatriculacion") ?: "-"
+                    kilometrajeTextView.text = "${document.getString("kilometraje") ?: "-"} Km"
+                    localidadTextView.text = document.getString("localidad") ?: "-"
+                    numeroPlazasTextView.text = document.getString("nPlazas") ?: "-"
+                    potenciaTextView.text = "${document.getString("potencia") ?: "-"} CV"
+                    tipoCombustibleTextView.text = document.getString("tipoCombustible") ?: "-"
+                    precioTexto.text = "${document.getString("precio") ?: "0"} €"
+
+                    cargarFotos(anuncioId)
+                } else {
+                    progressBar.visibility = View.GONE
+                    showAlert("Error", "El anuncio no existe.")
+                }
+            }
+            .addOnFailureListener {
+                progressBar.visibility = View.GONE
+                showAlert("Error", "No se pudo cargar el anuncio. Inténtalo de nuevo.")
+            }
+    }
+
+    private fun cargarFotos(anuncioId: String) {
+        val storageRef = FirebaseStorage.getInstance().reference.child("anuncios/$anuncioId")
+        storageRef.listAll()
+            .addOnSuccessListener { listResult ->
+                listaFotos.clear()
+                val tasks = listResult.items.map { item ->
+                    item.downloadUrl
+                }
+
+                Tasks.whenAllSuccess<Uri>(tasks)
+                    .addOnSuccessListener { uris ->
+                        listaFotos.addAll(uris)
+                        if (listaFotos.isNotEmpty()) {
+                            mostrarImagenActual()
+                        }
+                        progressBar.visibility = View.GONE
+                    }
+                    .addOnFailureListener {
+                        progressBar.visibility = View.GONE
+                        showAlert("Error", "No se pudieron obtener las URLs de las fotos del anuncio.")
+                    }
+            }
+            .addOnFailureListener {
+                progressBar.visibility = View.GONE
+                showAlert("Error", "No se pudieron cargar las fotos del anuncio.")
+            }
+    }
+
     private fun guardarFotosEnStorage(storageRef: StorageReference, vehiculoId: String) {
+        storageRef.listAll()
+            .addOnSuccessListener { listResult ->
+                val deleteTasks = mutableListOf<Task<Void>>()
+                listResult.items.forEach { item ->
+                    deleteTasks.add(item.delete())
+                }
+
+                Tasks.whenAllComplete(deleteTasks)
+                    .addOnSuccessListener {
+                        guardarNuevasFotosEnStorage(storageRef, vehiculoId)
+                    }
+                    .addOnFailureListener {
+                        progressBar.visibility = View.GONE
+                        showAlert("Error", "No se pudieron eliminar las fotos del anuncio. Inténtalo de nuevo.")
+                    }
+            }
+            .addOnFailureListener {
+                progressBar.visibility = View.GONE
+                showAlert("Error", "No se pudo acceder a la carpeta de fotos. Inténtalo de nuevo.")
+            }
+    }
+
+    private fun guardarNuevasFotosEnStorage(storageRef: StorageReference, vehiculoId: String) {
         val uploadTasks = mutableListOf<Task<Uri>>()
 
         listaFotos.forEachIndexed { index, uri ->
@@ -249,7 +373,7 @@ class CreaAnuncio : AppCompatActivity() {
         Tasks.whenAllComplete(uploadTasks)
             .addOnSuccessListener {
                 progressBar.visibility = View.GONE
-                showAlert("Éxito", "¡Anuncio publicado con éxito!") {
+                showAlert("Éxito", "¡Anuncio actualizado con éxito!") {
                     startActivity(Intent(this, MenuActivity::class.java))
                     finish()
                 }
@@ -307,12 +431,13 @@ class CreaAnuncio : AppCompatActivity() {
         dialog.show()
     }
 
-
-
-
     private fun mostrarImagenActual() {
         if (listaFotos.isNotEmpty()) {
-            imagenActual.setImageURI(listaFotos[fotoIndex])
+            Glide.with(this)
+                .load(listaFotos[fotoIndex])
+                .placeholder(R.drawable.coche)
+                .error(R.drawable.coche)
+                .into(imagenActual)
         } else {
             imagenActual.setImageResource(R.drawable.coche)
         }
