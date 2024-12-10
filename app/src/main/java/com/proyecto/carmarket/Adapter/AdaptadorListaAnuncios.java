@@ -16,6 +16,9 @@ import com.proyecto.carmarket.Activity.MainActivity;
 import com.proyecto.carmarket.Activity.VerAnuncio;
 import com.proyecto.carmarket.Objetos.Anuncio;
 import com.proyecto.carmarket.R;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 public class AdaptadorListaAnuncios extends RecyclerView.Adapter<AdaptadorListaAnuncios.ViewHolder> {
@@ -41,7 +44,17 @@ public class AdaptadorListaAnuncios extends RecyclerView.Adapter<AdaptadorListaA
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Anuncio anuncio = listaAnuncios.get(position);
         holder.marca.setText(anuncio.getMarca() + " " + anuncio.getModelo());
-        holder.precio.setText(anuncio.getPrecio() + " €");
+
+
+        try {
+            double precio = Double.parseDouble(anuncio.getPrecio());
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setGroupingSeparator('.');
+            DecimalFormat decimalFormat = new DecimalFormat("#,###", symbols);
+            holder.precio.setText(decimalFormat.format(precio) + " €");
+        } catch (NumberFormatException e) {
+            holder.precio.setText(anuncio.getPrecio() + " €");
+        }
 
         if (anuncio.getFotos() != null && !anuncio.getFotos().isEmpty()) {
             Glide.with(context)

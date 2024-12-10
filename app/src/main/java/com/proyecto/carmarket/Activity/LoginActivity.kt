@@ -73,11 +73,11 @@ class LoginActivity : AppCompatActivity() {
                         if (storedPassword != null && BCrypt.checkpw(contrasenna, storedPassword)) {
                             if (isAdmin) {
                                 progressBar.visibility = View.GONE
-                                showAlert("Error", "Proximamente")
-                                // Si es administrador, redirigir a la ventana de administración
-                                //val intent = Intent(this, AdminActivity::class.java) // AdminActivity es el nombre de la nueva actividad para admin
-                                //startActivity(intent)
-                                //finish()
+                                MainActivity.email = email
+                                MainActivity.admin = true
+                                val intent = Intent(this, MenuAdmin::class.java)
+                                startActivity(intent)
+                                finish()
                             } else {
                                 progressBar.visibility = View.GONE
                                 MainActivity.email = email

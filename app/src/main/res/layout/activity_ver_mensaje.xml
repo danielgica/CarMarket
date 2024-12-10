@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.VerMensaje"
+    android:background="@color/grey">
+
+    <ImageView
+        android:id="@+id/verMensaje_volver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:contentDescription="Botón volver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back2" />
+
+    <TextView
+        android:id="@+id/verMensaje_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mensaje"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/verMensaje_volver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/verMensaje_volver" />
+
+    <TextView
+        android:id="@+id/verMensaje_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Recibido el 16/05/2024"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMensaje_volver" />
+
+    <TextView
+        android:id="@+id/verMensaje_texto1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Enviado por:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMensaje_fecha" />
+
+    <TextView
+        android:id="@+id/verMensaje_emailEmisor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="5dp"
+        android:text="paco@gmail.com"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:background="@drawable/white_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMensaje_texto1" />
+
+    <TextView
+        android:id="@+id/verMensaje_texto2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Asunto:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMensaje_emailEmisor" />
+
+    <TextView
+        android:id="@+id/verMensaje_asunto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="5dp"
+        android:text="Saludo"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:background="@drawable/white_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMensaje_texto2" />
+
+    <TextView
+        android:id="@+id/verMensaje_texto3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Texto:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMensaje_asunto" />
+
+    <ScrollView
+        android:id="@+id/scrollMensaje"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:background="@drawable/white_bg"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonsGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verMensaje_texto3"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/verMensaje_mensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hola paco"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttonsGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/verMensaje_eliminar"
+            android:background="@drawable/black_bg"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Eliminar"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            style="@android:style/Widget.Button"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/verMensaje_verPerfil"
+            android:background="@drawable/black_bg"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Ver perfil"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            style="@android:style/Widget.Button"
+            android:visibility="visible"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/verMensaje_responder"
+            android:background="@drawable/black_bg"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Responder"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            style="@android:style/Widget.Button"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,18 @@
         android:theme="@style/Theme.CarMarket"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.VerAnuncioAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.MenuAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.VerMensaje"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TusMensajes"
+            android:exported="false" />
+        <activity
             android:name=".Activity.VerDosAnuncio"
             android:exported="false" />
         <activity

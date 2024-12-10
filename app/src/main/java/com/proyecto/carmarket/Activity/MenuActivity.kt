@@ -49,6 +49,7 @@ class MenuActivity : AppCompatActivity() {
         cargaNombreYFotoUsuario()
         cargaListaMarcas()
         cargaAnunciosPorMarcaYLocalidad(marcaSeleccionada, localidadSeleccionada)
+        actualizarEstadoPuntoRojo()
 
         val localidadEditText = findViewById<EditText>(R.id.menu_textoLocalidad)
         localidadEditText.addTextChangedListener(object : TextWatcher {
@@ -90,6 +91,16 @@ class MenuActivity : AppCompatActivity() {
             finish()
             progressBar.visibility = View.GONE
         }
+
+        val tusMensajesButton = findViewById<ImageView>(R.id.menu_mensajes)
+
+        tusMensajesButton.setOnClickListener {
+            val progressBar = findViewById<ProgressBar>(R.id.menu_progressBar)
+            progressBar.visibility = View.VISIBLE
+            startActivity(Intent(this, TusMensajes::class.java))
+            finish()
+            progressBar.visibility = View.GONE
+        }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -127,6 +138,7 @@ class MenuActivity : AppCompatActivity() {
         storageRef.downloadUrl.addOnSuccessListener { uri ->
             Glide.with(this)
                 .load(uri)
+                .circleCrop()
                 .placeholder(R.drawable.perfil)
                 .error(R.drawable.perfil)
                 .into(fotoImageView)
@@ -277,5 +289,27 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
+    private fun actualizarEstadoPuntoRojo() {
+        val db = FirebaseFirestore.getInstance()
+        val emailReceptor = MainActivity.email
 
+        db.collection("mensajes")
+            .whereEqualTo("emailReceptor", emailReceptor)
+            .whereEqualTo("leido", false)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    val menuPunto = findViewById<ImageView>(R.id.menu_punto)
+                    menuPunto.visibility = View.VISIBLE
+                } else {
+                    val menuPunto = findViewById<ImageView>(R.id.menu_punto)
+                    menuPunto.visibility = View.GONE
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirebaseError", "Error al buscar mensajes: ${e.message}")
+                val menuPunto = findViewById<ImageView>(R.id.menu_punto)
+                menuPunto.visibility = View.INVISIBLE
+            }
+    }
 }

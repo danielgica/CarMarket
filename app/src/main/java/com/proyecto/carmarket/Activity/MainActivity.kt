@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         var email: String = ""
         var idAnuncio1: String = ""
         var idAnuncio2: String = ""
-
+        var admin: Boolean = false
 
     }
 

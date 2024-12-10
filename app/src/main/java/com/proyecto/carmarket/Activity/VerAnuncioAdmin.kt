@@ -28,8 +28,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.text.SimpleDateFormat
 
-class TuAnuncio : AppCompatActivity() {
+class VerAnuncioAdmin : AppCompatActivity() {
 
     private lateinit var volverMenu: ImageView
     private lateinit var agregarImagen: ImageView
@@ -51,12 +52,17 @@ class TuAnuncio : AppCompatActivity() {
     private lateinit var tipoCombustibleTextView: TextView
     private lateinit var precio: TextView
     private lateinit var precioTexto: TextView
+
     private lateinit var actualizar: Button
     private lateinit var eliminarAnuncio: Button
+    private lateinit var verPerfil: Button
+    private lateinit var enviarMensaje: Button
+
     private lateinit var gestureDetector: GestureDetectorCompat
     private val listaFotos = mutableListOf<Uri>()
     private var fotoIndex = 0
     private var precioLimpio = ""
+    private var propietario = ""
     private var datosAnuncio = mutableMapOf<String, String>()
     private lateinit var progressBar: ProgressBar
     private lateinit var contadorFotos: TextView
@@ -72,47 +78,50 @@ class TuAnuncio : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tu_anuncio)
+        setContentView(R.layout.activity_ver_anuncio_admin)
         MainActivity.idAnuncio1 = intent.getStringExtra("ID_ANUNCIO").toString()
 
-        contadorFotos = findViewById(R.id.tuAnuncio_contador)
-        volverMenu = findViewById(R.id.tuAnuncio_volver)
-        agregarImagen = findViewById(R.id.tuAnuncio_anadir)
-        imagenActual = findViewById(R.id.tuAnuncio_foto)
-        borrarImagen = findViewById(R.id.tuAnuncio_eliminar)
-        marcas = findViewById(R.id.tuAnuncio_marca)
-        modelo = findViewById(R.id.tuAnuncio_modelo)
-        fecha = findViewById(R.id.tuAnuncio_imagenFecha)
-        fechaTextView = findViewById(R.id.tuAnuncio_textoFecha)
-        kilometraje = findViewById(R.id.tuAnuncio_fotoKm)
-        kilometrajeTextView = findViewById(R.id.tuAnuncio_textoKm)
-        localidad = findViewById(R.id.tuAnuncio_fotoLocalidad)
-        localidadTextView = findViewById(R.id.tuAnuncio_textoLocalidad)
-        numeroPlazas = findViewById(R.id.tuAnuncio_fotoPlazas)
-        numeroPlazasTextView = findViewById(R.id.tuAnuncio_textoPlazas)
-        potencia = findViewById(R.id.tuAnuncio_fotoPotencia)
-        potenciaTextView = findViewById(R.id.tuAnuncio_textoPotencia)
-        tipoCombustible = findViewById(R.id.tuAnuncio_fotoCombustible)
-        tipoCombustibleTextView = findViewById(R.id.tuAnuncio_textoCombustible)
-        precio = findViewById(R.id.tuAnuncio_clickPrecio)
-        actualizar = findViewById(R.id.tuAnuncio_actualizar)
-        eliminarAnuncio = findViewById(R.id.tuAnuncio_eliminarAnuncio)
-        precioTexto = findViewById(R.id.tuAnuncio_textoPrecio)
-        progressBar = findViewById(R.id.tuAnuncio_progressBar)
+        contadorFotos = findViewById(R.id.verAnuncioAdmin_contador)
+        volverMenu = findViewById(R.id.verAnuncioAdmin_volver)
+        agregarImagen = findViewById(R.id.verAnuncioAdmin_anadir)
+        imagenActual = findViewById(R.id.verAnuncioAdmin_foto)
+        borrarImagen = findViewById(R.id.verAnuncioAdmin_eliminar)
+        marcas = findViewById(R.id.verAnuncioAdmin_marca)
+        modelo = findViewById(R.id.verAnuncioAdmin_modelo)
+        fecha = findViewById(R.id.verAnuncioAdmin_imagenFecha)
+        fechaTextView = findViewById(R.id.verAnuncioAdmin_textoFecha)
+        kilometraje = findViewById(R.id.verAnuncioAdmin_fotoKm)
+        kilometrajeTextView = findViewById(R.id.verAnuncioAdmin_textoKm)
+        localidad = findViewById(R.id.verAnuncioAdmin_fotoLocalidad)
+        localidadTextView = findViewById(R.id.verAnuncioAdmin_textoLocalidad)
+        numeroPlazas = findViewById(R.id.verAnuncioAdmin_fotoPlazas)
+        numeroPlazasTextView = findViewById(R.id.verAnuncioAdmin_textoPlazas)
+        potencia = findViewById(R.id.verAnuncioAdmin_fotoPotencia)
+        potenciaTextView = findViewById(R.id.verAnuncioAdmin_textoPotencia)
+        tipoCombustible = findViewById(R.id.verAnuncioAdmin_fotoCombustible)
+        tipoCombustibleTextView = findViewById(R.id.verAnuncioAdmin_textoCombustible)
+        precio = findViewById(R.id.verAnuncioAdmin_clickPrecio)
+        actualizar = findViewById(R.id.verAnuncioAdmin_actualizar)
+        eliminarAnuncio = findViewById(R.id.verAnuncioAdmin_eliminarAnuncio)
+        precioTexto = findViewById(R.id.verAnuncioAdmin_textoPrecio)
+        progressBar = findViewById(R.id.verAnuncioAdmin_progressBar)
 
-        val linearFecha = findViewById<LinearLayout>(R.id.tuAnuncio_linearFecha)
-        val linearKm = findViewById<LinearLayout>(R.id.tuAnuncio_linearkm)
-        val linearLocalidad = findViewById<LinearLayout>(R.id.tuAnuncio_linearLocalidad)
-        val linearPlazas = findViewById<LinearLayout>(R.id.tuAnuncio_linearPlazas)
-        val linearPotencia = findViewById<LinearLayout>(R.id.tuAnuncio_linearPotencia)
-        val linearCombustible = findViewById<LinearLayout>(R.id.tuAnuncio_linearCombustible)
+        verPerfil = findViewById(R.id.verAnuncioAdmin_verPerfil)
+        enviarMensaje = findViewById(R.id.verAnuncioAdmin_enviaMensaje)
+
+        val linearFecha = findViewById<LinearLayout>(R.id.verAnuncioAdmin_linearFecha)
+        val linearKm = findViewById<LinearLayout>(R.id.verAnuncioAdmin_linearkm)
+        val linearLocalidad = findViewById<LinearLayout>(R.id.verAnuncioAdmin_linearLocalidad)
+        val linearPlazas = findViewById<LinearLayout>(R.id.verAnuncioAdmin_linearPlazas)
+        val linearPotencia = findViewById<LinearLayout>(R.id.verAnuncioAdmin_linearPotencia)
+        val linearCombustible = findViewById<LinearLayout>(R.id.verAnuncioAdmin_linearCombustible)
 
         progressBar.visibility = View.VISIBLE
         cargarDatosAnuncio(MainActivity.idAnuncio1)
 
         volverMenu.setOnClickListener {
             progressBar.visibility = View.VISIBLE
-            startActivity(Intent(this, TusAnuncios::class.java))
+            startActivity(Intent(this, MenuAdmin::class.java))
             finish()
             progressBar.visibility = View.GONE
         }
@@ -216,6 +225,85 @@ class TuAnuncio : AppCompatActivity() {
             }
         }
 
+        verPerfil.setOnClickListener{
+            val intent = Intent(this, SuPerfil::class.java)
+            intent.putExtra("email", propietario)
+            intent.putExtra("ventanaAnterior", "anuncioAdmin")
+            startActivity(intent)
+            finish()
+        }
+
+        enviarMensaje.setOnClickListener{
+            val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+            builder.setTitle("Enviar Mensaje")
+
+            val layout = LinearLayout(this)
+            layout.orientation = LinearLayout.VERTICAL
+            layout.setPadding(32, 32, 32, 32)
+
+            val asuntoInput = EditText(this).apply {
+                hint = "Asunto (máx. 40 caracteres)"
+                inputType = android.text.InputType.TYPE_CLASS_TEXT
+                filters = arrayOf(android.text.InputFilter.LengthFilter(40)) // Máximo de 40 caracteres
+            }
+            layout.addView(asuntoInput)
+
+            val mensajeInput = EditText(this).apply {
+                hint = "Escribe tu mensaje"
+                inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
+                setLines(4)
+                maxLines = 6
+                scrollBarStyle = View.SCROLLBARS_INSIDE_INSET
+            }
+            layout.addView(mensajeInput)
+
+            builder.setView(layout)
+
+            builder.setPositiveButton("Enviar") { _, _ ->
+                val asunto = asuntoInput.text.toString().trim()
+                val mensaje = mensajeInput.text.toString().trim()
+
+                if (asunto.isEmpty() || asunto.length > 40) {
+                    showAlert("Error", "El asunto debe tener entre 1 y 40 caracteres.")
+                    return@setPositiveButton
+                }
+                if (mensaje.isEmpty()) {
+                    showAlert("Error", "El mensaje no puede estar vacío.")
+                    return@setPositiveButton
+                }
+
+                val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val fechaActual = sdf.format(Date())
+
+                val mensajeObj = hashMapOf(
+                    "asunto" to asunto,
+                    "borradoEmisor" to false,
+                    "borradoReceptor" to false,
+                    "emailReceptor" to propietario,
+                    "emailEmisor" to MainActivity.email,
+                    "fecha" to fechaActual,
+                    "leido" to false,
+                    "mensaje" to mensaje
+                )
+
+                val db = FirebaseFirestore.getInstance()
+                db.collection("mensajes")
+                    .add(mensajeObj)
+                    .addOnSuccessListener {
+                        showAlert("Éxito", "Mensaje enviado correctamente.")
+                    }
+                    .addOnFailureListener {
+                        showAlert("Error", "No se pudo enviar el mensaje. Inténtalo más tarde.")
+                    }
+            }
+
+
+            builder.setNegativeButton("Cancelar", null)
+
+            builder.show()
+        }
+
+
         actualizar.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             if (validarDatos()) {
@@ -229,7 +317,7 @@ class TuAnuncio : AppCompatActivity() {
                     "potencia" to potenciaTextView.text.toString().removeSuffix(" CV"),
                     "precio" to precioLimpio,
                     "tipoCombustible" to tipoCombustibleTextView.text.toString(),
-                    "propietario" to MainActivity.email
+                    "propietario" to propietario
                 )
 
                 val vehiculoCollection = FirebaseFirestore.getInstance().collection("vehiculo")
@@ -260,37 +348,54 @@ class TuAnuncio : AppCompatActivity() {
                     val vehiculoCollection = FirebaseFirestore.getInstance().collection("vehiculo")
                     val storageRef = FirebaseStorage.getInstance().reference.child("anuncios/${MainActivity.idAnuncio1}")
 
-                    vehiculoCollection.document(MainActivity.idAnuncio1).delete()
-                        .addOnSuccessListener {
-                            storageRef.listAll()
-                                .addOnSuccessListener { listResult ->
-                                    val deleteTasks = mutableListOf<Task<Void>>()
-                                    listResult.items.forEach { item ->
-                                        deleteTasks.add(item.delete())
-                                    }
+                    vehiculoCollection.document(MainActivity.idAnuncio1).get()
+                        .addOnSuccessListener { document ->
+                            if (document.exists()) {
+                                val propietario = document.getString("propietario") ?: "SinPropietario"
+                                val asunto = "Eliminacion de anuncio"
+                                val mensaje = "Estimado usuario, el anuncio del vehiculo  ${marcas.text}  ${modelo.text} ha sido eliminado por un administrador"
 
-                                    Tasks.whenAllComplete(deleteTasks)
-                                        .addOnSuccessListener {
-                                            progressBar.visibility = View.GONE
-                                            showAlert("Éxito", "El anuncio se eliminó correctamente.") {
-                                                val intent = Intent(this, TusAnuncios::class.java)
-                                                startActivity(intent)
-                                                finish()
+                                vehiculoCollection.document(MainActivity.idAnuncio1).delete()
+                                    .addOnSuccessListener {
+                                        storageRef.listAll()
+                                            .addOnSuccessListener { listResult ->
+                                                val deleteTasks = mutableListOf<Task<Void>>()
+                                                listResult.items.forEach { item ->
+                                                    deleteTasks.add(item.delete())
+                                                }
+
+                                                Tasks.whenAllComplete(deleteTasks)
+                                                    .addOnSuccessListener {
+                                                        enviarMensaje(propietario, asunto, mensaje)
+                                                        progressBar.visibility = View.GONE
+                                                        showAlert("Éxito", "El anuncio se eliminó correctamente.") {
+                                                            val intent = Intent(this, MenuAdmin::class.java)
+                                                            startActivity(intent)
+                                                            finish()
+                                                        }
+                                                    }
+                                                    .addOnFailureListener {
+                                                        progressBar.visibility = View.GONE
+                                                        showAlert("Error", "No se pudieron eliminar las fotos del anuncio. Inténtalo de nuevo.")
+                                                    }
                                             }
-                                        }
-                                        .addOnFailureListener {
-                                            progressBar.visibility = View.GONE
-                                            showAlert("Error", "No se pudieron eliminar las fotos del anuncio. Inténtalo de nuevo.")
-                                        }
-                                }
-                                .addOnFailureListener {
-                                    progressBar.visibility = View.GONE
-                                    showAlert("Error", "No se pudo acceder a la carpeta de fotos. Inténtalo de nuevo.")
-                                }
+                                            .addOnFailureListener {
+                                                progressBar.visibility = View.GONE
+                                                showAlert("Error", "No se pudo acceder a la carpeta de fotos. Inténtalo de nuevo.")
+                                            }
+                                    }
+                                    .addOnFailureListener {
+                                        progressBar.visibility = View.GONE
+                                        showAlert("Error", "No se pudo eliminar el anuncio. Inténtalo de nuevo.")
+                                    }
+                            } else {
+                                progressBar.visibility = View.GONE
+                                showAlert("Error", "El documento no existe o no tiene un propietario válido.")
+                            }
                         }
                         .addOnFailureListener {
                             progressBar.visibility = View.GONE
-                            showAlert("Error", "No se pudo eliminar el anuncio. Inténtalo de nuevo.")
+                            showAlert("Error", "No se pudo obtener los datos del anuncio. Inténtalo de nuevo.")
                         }
                 },
                 onCancel = {
@@ -315,6 +420,7 @@ class TuAnuncio : AppCompatActivity() {
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
+                    propietario = document.getString("propietario") ?: "propietario"
                     marcas.text = document.getString("marca") ?: "Marca"
                     modelo.text = document.getString("modelo") ?: "Modelo"
                     fechaTextView.text = document.getString("annoMatriculacion") ?: "-"
@@ -327,7 +433,7 @@ class TuAnuncio : AppCompatActivity() {
 
                     val precioRaw = precioLimpio.toDoubleOrNull() ?: 0.0
                     val symbols = DecimalFormatSymbols(Locale.getDefault()).apply {
-                        groupingSeparator = '.'
+                        groupingSeparator = '.' // Usar punto como separador de miles
                     }
                     val decimalFormat = DecimalFormat("#,###", symbols)
                     val precioFormateado = decimalFormat.format(precioRaw)
@@ -379,8 +485,6 @@ class TuAnuncio : AppCompatActivity() {
             }
     }
 
-
-
     private fun guardarFotosEnStorage(storageRef: StorageReference, vehiculoId: String) {
         val directorioFotos = storageRef
 
@@ -389,6 +493,7 @@ class TuAnuncio : AppCompatActivity() {
                 val deleteTasks = listResult.items.map { it.delete() }
                 Tasks.whenAllComplete(deleteTasks)
                     .addOnSuccessListener {
+                        // Paso 2: Subir nuevas fotos
                         subirNuevasFotos(storageRef)
                     }
                     .addOnFailureListener {
@@ -430,7 +535,7 @@ class TuAnuncio : AppCompatActivity() {
             .addOnSuccessListener {
                 progressBar.visibility = View.GONE
                 showAlert("Éxito", "Anuncio actualizado con éxito") {
-                    startActivity(Intent(this, TusAnuncios::class.java))
+                    startActivity(Intent(this, MenuAdmin::class.java))
                     finish()
                 }
             }
@@ -439,6 +544,7 @@ class TuAnuncio : AppCompatActivity() {
                 showAlert("Error", "No se pudieron subir las fotos. Inténtalo de nuevo.")
             }
     }
+
 
     private fun showAlert(titulo: String, mensaje: String, onDismiss: (() -> Unit)? = null) {
         val builder = AlertDialog.Builder(this)
@@ -584,5 +690,30 @@ class TuAnuncio : AppCompatActivity() {
         }
         val alertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun enviarMensaje(propietario: String, asunto: String, mensaje: String) {
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val fechaActual = sdf.format(Date())
+
+        val mensajeObj = hashMapOf(
+            "asunto" to asunto,
+            "borradoEmisor" to false,
+            "borradoReceptor" to false,
+            "emailReceptor" to propietario,
+            "emailEmisor" to MainActivity.email,
+            "fecha" to fechaActual,
+            "leido" to false,
+            "mensaje" to mensaje
+        )
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("mensajes")
+            .add(mensajeObj)
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener {
+                showAlert("Error", "No se pudo enviar el mensaje al propietario. Inténtalo más tarde.")
+            }
     }
 }

@@ -12,6 +12,12 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.proyecto.carmarket.R
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class VerAnuncio : AppCompatActivity() {
 
@@ -56,6 +62,8 @@ class VerAnuncio : AppCompatActivity() {
 
         cargarDatosAnuncio(MainActivity.idAnuncio1)
 
+
+
         volverMenu.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             startActivity(Intent(this, MenuActivity::class.java))
@@ -89,6 +97,77 @@ class VerAnuncio : AppCompatActivity() {
             finish()
         }
 
+        findViewById<Button>(R.id.verAnuncio_enviaMensaje).setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Enviar Mensaje")
+
+            val layout = LinearLayout(this)
+            layout.orientation = LinearLayout.VERTICAL
+            layout.setPadding(32, 32, 32, 32)
+
+            val asuntoInput = EditText(this).apply {
+                hint = "Asunto (máx. 40 caracteres)"
+                inputType = android.text.InputType.TYPE_CLASS_TEXT
+                filters = arrayOf(android.text.InputFilter.LengthFilter(40))
+            }
+            layout.addView(asuntoInput)
+
+            val mensajeInput = EditText(this).apply {
+                hint = "Escribe tu mensaje"
+                inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
+                setLines(4)
+                maxLines = 6
+                scrollBarStyle = View.SCROLLBARS_INSIDE_INSET
+            }
+            layout.addView(mensajeInput)
+
+            builder.setView(layout)
+
+            builder.setPositiveButton("Enviar") { _, _ ->
+                val asunto = asuntoInput.text.toString().trim()
+                val mensaje = mensajeInput.text.toString().trim()
+
+                if (asunto.isEmpty() || asunto.length > 40) {
+                    showAlert("Error", "El asunto debe tener entre 1 y 40 caracteres.")
+                    return@setPositiveButton
+                }
+                if (mensaje.isEmpty()) {
+                    showAlert("Error", "El mensaje no puede estar vacío.")
+                    return@setPositiveButton
+                }
+
+                val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val fechaActual = sdf.format(Date())
+
+                val mensajeObj = hashMapOf(
+                    "asunto" to asunto,
+                    "borradoEmisor" to false,
+                    "borradoReceptor" to false,
+                    "emailReceptor" to propietario,
+                    "emailEmisor" to MainActivity.email,
+                    "fecha" to fechaActual,
+                    "leido" to false,
+                    "mensaje" to mensaje
+                )
+
+                val db = FirebaseFirestore.getInstance()
+                db.collection("mensajes")
+                    .add(mensajeObj)
+                    .addOnSuccessListener {
+                        showAlert("Éxito", "Mensaje enviado correctamente.")
+                    }
+                    .addOnFailureListener {
+                        showAlert("Error", "No se pudo enviar el mensaje. Inténtalo más tarde.")
+                    }
+            }
+
+
+            builder.setNegativeButton("Cancelar", null)
+
+            builder.show()
+        }
+
+
 
     }
 
@@ -106,8 +185,21 @@ class VerAnuncio : AppCompatActivity() {
                     numeroPlazasTextView.text = document.getString("nPlazas") ?: "-"
                     potenciaTextView.text = "${document.getString("potencia") ?: "-"} CV"
                     tipoCombustibleTextView.text = document.getString("tipoCombustible") ?: "-"
-                    precioTexto.text = "${document.getString("precio") ?: "0"} €"
+
+                    val precioRaw = document.getString("precio")?.toDoubleOrNull() ?: 0.0
+                    val symbols = DecimalFormatSymbols(Locale.getDefault()).apply {
+                        groupingSeparator = '.'
+                    }
+                    val decimalFormat = DecimalFormat("#,###", symbols)
+                    val precioFormateado = decimalFormat.format(precioRaw)
+                    precioTexto.text = "$precioFormateado €"
+
                     propietario = document.getString("propietario") ?: ""
+
+                    if(MainActivity.email == propietario){
+                        findViewById<Button>(R.id.verAnuncio_verPerfil).visibility = View.GONE
+                        findViewById<Button>(R.id.verAnuncio_enviaMensaje).visibility = View.GONE
+                    }
 
                     cargarFotos(anuncioId)
                 } else {

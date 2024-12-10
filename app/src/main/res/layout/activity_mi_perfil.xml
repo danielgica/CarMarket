@@ -8,7 +8,7 @@
     tools:context=".Activity.MiPerfil">
 
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -57,6 +57,16 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/miPerfil_volver" />
+
+                        <ImageView
+                            android:id="@+id/miPerfil_verificado"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/miPerfil_volver"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/miPerfil_volver"
+                            app:srcCompat="@drawable/verificado" />
 
                         <ImageView
                             android:id="@+id/miPerfil_foto"
@@ -125,6 +135,47 @@
                                 android:textSize="20sp"
                                 android:textColor="@color/black"
                                 android:layout_margin="24dp"/>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_margin="20dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:background="@drawable/grey_bg_corner">
+
+                                <ImageView
+                                    android:id="@+id/imageView80"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginStart="12dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/arrova" />
+
+                                <TextView
+                                    android:id="@+id/miPerfil_correo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:text="Correo"
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@+id/imageView80"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView80"
+                                    app:layout_constraintTop_toTopOf="@+id/imageView80" />
+
+                                <ImageView
+                                    android:id="@+id/miPerfil_editaCorreo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="12dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/review" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
@@ -269,6 +320,7 @@
                                 android:layout_marginStart="24dp"
                                 android:layout_marginTop="24dp"
                                 android:layout_marginEnd="24dp"
+                                android:layout_marginBottom="24dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="60dp"
                                 android:text="Desconectarse"

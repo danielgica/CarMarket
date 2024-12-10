@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 
 class CreaAnuncio : AppCompatActivity() {
 
@@ -50,6 +52,7 @@ class CreaAnuncio : AppCompatActivity() {
     private lateinit var gestureDetector: GestureDetectorCompat
     private val listaFotos = mutableListOf<Uri>()
     private var fotoIndex = 0
+    private var precioLimpio = ""
     private var datosAnuncio = mutableMapOf<String, String>()
     private lateinit var progressBar: ProgressBar
     private lateinit var contadorFotos: TextView
@@ -155,7 +158,15 @@ class CreaAnuncio : AppCompatActivity() {
         }
 
 
-        modelo.setOnClickListener { mostrarPopupTexto("Modelo") { texto -> modelo.text = texto } }
+        modelo.setOnClickListener {
+            mostrarPopupTexto("Modelo") { texto ->
+                if (texto.length <= 15) {
+                    modelo.text = texto
+                } else {
+                    showAlert("Error", "El texto no puede tener más de 15 caracteres")
+                }
+            }
+        }
 
         linearFecha.setOnClickListener {
             mostrarSelectorFecha("Fecha") { fechaTextView.text = it }
@@ -185,7 +196,15 @@ class CreaAnuncio : AppCompatActivity() {
 
         precio.setOnClickListener {
             mostrarPopupNumero("Precio") { texto ->
-                precioTexto.text = "$texto €"
+                precioLimpio = texto
+                val precioRaw = precioLimpio.toDoubleOrNull() ?: 0.0
+                val symbols = DecimalFormatSymbols(Locale.getDefault()).apply {
+                    groupingSeparator = '.' // Usar punto como separador de miles
+                }
+                val decimalFormat = DecimalFormat("#,###", symbols)
+                val precioFormateado = decimalFormat.format(precioRaw)
+                precioTexto.text = "$precioFormateado €"
+
                 datosAnuncio["precio"] = texto
             }
         }
@@ -201,7 +220,7 @@ class CreaAnuncio : AppCompatActivity() {
                     "modelo" to modelo.text.toString(),
                     "nPlazas" to numeroPlazasTextView.text.toString(),
                     "potencia" to potenciaTextView.text.toString().removeSuffix(" CV"),
-                    "precio" to precioTexto.text.toString().removeSuffix(" €"),
+                    "precio" to precioLimpio,
                     "tipoCombustible" to tipoCombustibleTextView.text.toString(),
                     "propietario" to MainActivity.email // Usar el email del usuario
                 )

@@ -11,6 +11,9 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.proyecto.carmarket.R
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
 class VerDosAnuncio : AppCompatActivity() {
 
@@ -138,7 +141,15 @@ class VerDosAnuncio : AppCompatActivity() {
                         numeroPlazasTextView1.text = document.getString("nPlazas") ?: "-"
                         potenciaTextView1.text = "${document.getString("potencia") ?: "-"} CV"
                         tipoCombustibleTextView1.text = document.getString("tipoCombustible") ?: "-"
-                        precioTexto1.text = "${document.getString("precio") ?: "0"} €"
+
+                        val precioRaw = document.getString("precio")?.toDoubleOrNull() ?: 0.0
+                        val symbols = DecimalFormatSymbols(Locale.getDefault()).apply {
+                            groupingSeparator = '.'
+                        }
+                        val decimalFormat = DecimalFormat("#,###", symbols)
+                        val precioFormateado = decimalFormat.format(precioRaw)
+                        precioTexto1.text = "$precioFormateado €"
+
                         propietario1 = document.getString("propietario") ?: ""
                         cargarFotos(anuncioId, true)
                     } else {
@@ -150,7 +161,15 @@ class VerDosAnuncio : AppCompatActivity() {
                         numeroPlazasTextView2.text = document.getString("nPlazas") ?: "-"
                         potenciaTextView2.text = "${document.getString("potencia") ?: "-"} CV"
                         tipoCombustibleTextView2.text = document.getString("tipoCombustible") ?: "-"
-                        precioTexto2.text = "${document.getString("precio") ?: "0"} €"
+
+                        val precioRaw = document.getString("precio")?.toDoubleOrNull() ?: 0.0
+                        val symbols = DecimalFormatSymbols(Locale.getDefault()).apply {
+                            groupingSeparator = '.'
+                        }
+                        val decimalFormat = DecimalFormat("#,###", symbols)
+                        val precioFormateado = decimalFormat.format(precioRaw)
+                        precioTexto2.text = "$precioFormateado €"
+
                         propietario2 = document.getString("propietario") ?: ""
                         cargarFotos(anuncioId, false)
                     }
