@@ -81,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
                             } else {
                                 progressBar.visibility = View.GONE
                                 MainActivity.email = email
+                                MainActivity.admin = false
                                 val intent = Intent(this, MenuActivity::class.java)
                                 startActivity(intent)
                                 finish()
